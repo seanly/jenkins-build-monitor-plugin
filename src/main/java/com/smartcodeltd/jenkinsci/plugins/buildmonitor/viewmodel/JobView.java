@@ -162,6 +162,16 @@ public class JobView {
         return lastCompletedBuild().knownFailures();
     }
 
+    @JsonProperty
+    public int testTotalCount() {
+        return lastCompletedBuild().testTotalCount();
+    }
+
+    @JsonProperty
+    public int testFailCount() {
+        return lastCompletedBuild().testFailCount();
+    }
+
     public String toString() {
         return name();
     }

@@ -8,6 +8,7 @@ import com.smartcodeltd.jenkinsci.plugins.buildmonitor.viewmodel.plugins.BuildAu
 import com.smartcodeltd.jenkinsci.plugins.buildmonitor.viewmodel.plugins.bfa.Analysis;
 import com.smartcodeltd.jenkinsci.plugins.buildmonitor.viewmodel.plugins.claim.Claim;
 import hudson.model.AbstractBuild;
+import hudson.tasks.test.AbstractTestResultAction;
 import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.User;
@@ -130,6 +131,28 @@ public class BuildView implements BuildViewModel {
         }
 
         return culprits;
+    }
+
+    @Override
+    public int testTotalCount() {
+        if(build instanceof AbstractBuild<?, ?>){
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) build;
+            if(jenkinsBuild.getAction(AbstractTestResultAction.class) == null)
+                return 0;
+            return jenkinsBuild.getAction(AbstractTestResultAction.class).getTotalCount();
+        }
+        return 0;
+    }
+
+    @Override
+    public int testFailCount() {
+        if(build instanceof AbstractBuild<?, ?>){
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) build;
+            if(jenkinsBuild.getAction(AbstractTestResultAction.class) == null)
+                return 0;
+            return jenkinsBuild.getAction(AbstractTestResultAction.class).getFailCount();
+        }
+        return 0;
     }
 
     @Override

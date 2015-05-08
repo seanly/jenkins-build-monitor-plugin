@@ -10,6 +10,9 @@
 
         <div class="meta">
             <div class="latest-results">
+                <h2 ng-if="settings.showTestResult">
+                    Case Result: {{job.testTotalCount}}/{{job.testFailCount}}
+                </h2>
                 <h2>
                     <a title="{{job.name}}"
                        href="{{job.url}}">{{job.name}}</a>

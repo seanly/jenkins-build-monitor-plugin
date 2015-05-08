@@ -30,4 +30,8 @@ public interface BuildViewModel {
     boolean hasKnownFailures();
 
     List<String> knownFailures();
+
+    // test case count.
+    int testTotalCount();
+    int testFailCount();
 }
