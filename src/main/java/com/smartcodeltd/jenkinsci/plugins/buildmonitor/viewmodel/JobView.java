@@ -172,6 +172,11 @@ public class JobView {
         return lastCompletedBuild().testFailCount();
     }
 
+    @JsonProperty
+    public boolean shouldShowTestResult() {
+        return lastCompletedBuild().testTotalCount() > 0;
+    }
+
     public String toString() {
         return name();
     }

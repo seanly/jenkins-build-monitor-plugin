@@ -9,7 +9,7 @@
 
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>build-monitor-plugin</artifactId>
-    <version>1.6-SNAPSHOT</version>
+    <version>1.6-sicent</version>
     <packaging>hpi</packaging>
 
     <name>Build Monitor View</name>
@@ -257,71 +257,13 @@
                     <disabledTestInjection>true</disabledTestInjection>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>generate-test-resources</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>${npm-executable}</executable>
-                    <arguments>
-                        <argument>install</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.kelveden</groupId>
-                <artifactId>maven-karma-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <phase>test</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <karmaExecutable>${project.basedir}/node_modules/karma/bin/karma</karmaExecutable>
-                    <configFile>src/test/resources/karma.conf.js</configFile>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.1</version>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.6.4.201312101107</version>
-                <configuration>
-                    <destFile>${project.build.directory}/coverage/jacoco-unit.exec</destFile>
-                    <dataFile>${project.build.directory}/coverage/jacoco-unit.exec</dataFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 </project>
